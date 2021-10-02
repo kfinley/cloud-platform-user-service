@@ -1,0 +1,7 @@
+# dotnet files
+bin
+obj
+
+# macOS
+.DS_Store
+
