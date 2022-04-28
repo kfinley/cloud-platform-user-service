@@ -15,14 +15,29 @@ using MediatR;
 using CloudPlatform.User.Models;
 
 namespace CloudPlatform.User.Commands {
-  public class CreateCognitoUserHandler : IRequestHandler<CreateCognitoUserRequest, CreateCognitoUserResponse> {
+
+  public class CreateCognitoUserRequest : IRequest<CreateCognitoUserResponse> {
+    public string UserId { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+  }
+
+  public class CreateCognitoUserResponse {
+    public bool Success { get; set; }
+    public string TempPassword { get; set; }
+    public string UserId { get; set; }
+    public string Email { get; set; }
+  }
+
+  public class CreateCognitoUser : IRequestHandler<CreateCognitoUserRequest, CreateCognitoUserResponse> {
 
     private readonly IAmazonCognitoIdentityProvider provider;
     private readonly CognitoOptions cognitoOptions;
-    private readonly ILogger<CreateCognitoUserHandler> logger;
+    private readonly ILogger<CreateCognitoUser> logger;
 
-    public CreateCognitoUserHandler(IAmazonCognitoIdentityProvider provider,
-      IOptions<CognitoOptions> cognitoOptions, ILogger<CreateCognitoUserHandler> logger) {
+    public CreateCognitoUser(IAmazonCognitoIdentityProvider provider,
+      IOptions<CognitoOptions> cognitoOptions, ILogger<CreateCognitoUser> logger) {
       this.provider = provider;
       this.cognitoOptions = cognitoOptions.Value;
       this.logger = logger;
@@ -67,7 +82,10 @@ namespace CloudPlatform.User.Commands {
     const string PASSWORD_ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_$.@?;^*~-=+()[]{};':<>?,.";
 
     private string GeneratePassword(int length = 50) {
-
+      //TODO: Update to something like this... This fails with an index out of range exception though...
+      // using var rng = RandomNumberGenerator.Create();
+      // var passwordBytes = new byte[sizeof(uint)];
+      // rng.GetBytes(passwordBytes);
       var random = new RNGCryptoServiceProvider();
       var passwordBytes = new byte[length];
       random.GetBytes(passwordBytes);

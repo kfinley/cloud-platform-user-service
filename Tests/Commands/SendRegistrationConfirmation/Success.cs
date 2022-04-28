@@ -2,6 +2,8 @@ using System;
 using System.Net;
 using System.Threading;
 
+using Microsoft.Extensions.Options;
+
 using Amazon.SimpleEmail;
 using Amazon.SimpleEmail.Model;
 
@@ -12,12 +14,12 @@ using Xunit;
 using Moq;
 using It = Machine.Specifications.It;
 using Argument = Moq.It;
+using SUT;
 
 using CloudPlatform.Tests.Common.Specs;
 using CloudPlatform.Tests.Common;
 using CloudPlatform.User.Commands;
 using CloudPlatform.User.Models;
-using Microsoft.Extensions.Options;
 
 namespace CloudPlatform.User.Tests {
   [Subject("Create Cognito User")]
@@ -27,7 +29,7 @@ namespace CloudPlatform.User.Tests {
       Setup(this, context, of);
     }
 
-    static Sut<SendRegistrationConfirmationHandler> Sut = new Sut<SendRegistrationConfirmationHandler>();
+    static Sut<SendRegistrationConfirmation> Sut = new Sut<SendRegistrationConfirmation>();
 
     static SendRegistrationConfirmationRequest Request;
 

@@ -8,12 +8,24 @@ using MediatR;
 using CloudPlatform.User.Models;
 
 namespace CloudPlatform.User.Commands {
-  public class RegistrationHandler : IRequestHandler<RegistrationRequest, RegistrationResponse> {
+
+  public class RegistrationRequest : IRequest<RegistrationResponse> {
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+  }
+
+  public class RegistrationResponse {
+    public bool Success { get; set; }
+    public string Error { get; set; }
+  }
+
+  public class Registration : IRequestHandler<RegistrationRequest, RegistrationResponse> {
 
     private readonly IMediator mediator;
-    private readonly ILogger<RegistrationHandler> logger;
+    private readonly ILogger<Registration> logger;
 
-    public RegistrationHandler(IMediator mediator, ILogger<RegistrationHandler> logger) {
+    public Registration(IMediator mediator, ILogger<Registration> logger) {
       this.mediator = mediator;
       this.logger = logger;
     }

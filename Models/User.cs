@@ -1,4 +1,4 @@
-using CloudPlatform.Core.Data;
+using CloudPlatform.Entities;
 
 namespace CloudPlatform.User.Models {
   public class User : BaseEntity {

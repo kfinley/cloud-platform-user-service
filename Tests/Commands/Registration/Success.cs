@@ -10,11 +10,11 @@ using Xunit;
 using Moq;
 using It = Machine.Specifications.It;
 using Argument = Moq.It;
+using SUT;
 
 using CloudPlatform.Tests.Common.Specs;
 using CloudPlatform.Tests.Common;
 using CloudPlatform.User.Commands;
-using CloudPlatform.User.Models;
 
 namespace CloudPlatform.User.Tests {
   [Subject("User Registration")]
@@ -24,7 +24,7 @@ namespace CloudPlatform.User.Tests {
       Setup(this, context, of);
     }
 
-    static Sut<RegistrationHandler> Sut = new Sut<RegistrationHandler, RegistrationResponse>();
+    static Sut<Registration> Sut = new Sut<Registration, RegistrationResponse>();
 
     static RegistrationRequest Request;
     static RegistrationResponse Result;

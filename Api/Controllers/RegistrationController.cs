@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using MediatR;
 
-using CloudPlatform.User.Models;
+using CloudPlatform.User.Commands;
 using CloudPlatform.WebApi;
 
 namespace CloudPlatform.User.Api.Controllers {

@@ -2,6 +2,8 @@ using System;
 using System.Net;
 using System.Threading;
 
+using Microsoft.Extensions.Options;
+
 using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
 
@@ -13,12 +15,12 @@ using Xunit;
 using Moq;
 using It = Machine.Specifications.It;
 using Argument = Moq.It;
+using SUT;
 
 using CloudPlatform.Tests.Common.Specs;
 using CloudPlatform.Tests.Common;
 using CloudPlatform.User.Commands;
 using CloudPlatform.User.Models;
-using Microsoft.Extensions.Options;
 
 namespace CloudPlatform.User.Tests {
   [Subject("Create Cognito User")]
@@ -28,7 +30,7 @@ namespace CloudPlatform.User.Tests {
       Setup(this, context, of);
     }
 
-    static Sut<CreateCognitoUserHandler> Sut = new Sut<CreateCognitoUserHandler, CreateCognitoUserResponse>();
+    static Sut<CreateCognitoUser> Sut = new Sut<CreateCognitoUser, CreateCognitoUserResponse>();
 
     static CreateCognitoUserRequest Request;
     static CreateCognitoUserResponse Result;

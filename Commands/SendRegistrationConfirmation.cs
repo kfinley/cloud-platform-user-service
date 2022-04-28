@@ -14,11 +14,20 @@ using MediatR;
 using CloudPlatform.User.Models;
 
 namespace CloudPlatform.User.Commands {
-  public class SendRegistrationConfirmationHandler : INotificationHandler<SendRegistrationConfirmationRequest> {
+
+  public class SendRegistrationConfirmationRequest : INotification {
+    public Guid UserId { get; set; }
+    public string TempPassword { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+  }
+
+  public class SendRegistrationConfirmation : INotificationHandler<SendRegistrationConfirmationRequest> {
     private readonly ContactOptions contactOptions;
     private readonly SiteOptions siteOptions;
     private readonly IAmazonSimpleEmailService emailService;
-    public SendRegistrationConfirmationHandler(IOptions<SiteOptions> siteOptions, IOptions<ContactOptions> contactOptions, IAmazonSimpleEmailService emailService) {
+    public SendRegistrationConfirmation(IOptions<SiteOptions> siteOptions, IOptions<ContactOptions> contactOptions, IAmazonSimpleEmailService emailService) {
       this.contactOptions = contactOptions.Value;
       this.siteOptions = siteOptions.Value;
       this.emailService = emailService;

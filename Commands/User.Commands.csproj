@@ -1,19 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.CognitoIdentityProvider" Version="3.7.1.6" />
-    <PackageReference Include="AWSSDK.SimpleEmail" Version="3.7.0.35" />
-    <PackageReference Include="MediatR" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
-    <PackageReference Include="EFQuerySpecs" Version="5.0.7" />
+    <PackageReference Include="AWSSDK.CognitoIdentityProvider" Version="3.7.2.14" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.3.26" />
+    <PackageReference Include="AWSSDK.SimpleEmail" Version="3.7.0.150" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+    <PackageReference Include="EFQuerySpecs" Version="6.0.4" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\dotnet\Aws.DynamoDB\Aws.DynamoDB.csproj" />
     <ProjectReference Include="..\Models\User.Models.csproj" />
     <ProjectReference Include="..\..\..\dotnet\Core.Data\Core.Data.csproj" />
     <ProjectReference Include="..\..\..\dotnet\Core\Core.csproj" />
